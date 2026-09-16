@@ -352,12 +352,12 @@
     </div>
 
     <script>
-        // ========== 腾讯行情接口 ==========
-        // 格式: v_sh600519="1~贵州茅台~600519~1258.00~..."
+        // ========== 腾讯行情接口（GBK 解码）==========
         async function fetchTencentQuote(symbol) {
             const url = 'https://qt.gtimg.cn/q=' + symbol;
             const res = await fetch(url);
-            const text = await res.text();
+            const buf = await res.arrayBuffer();
+            const text = new TextDecoder('gbk').decode(buf);
             const match = text.match(/="([^"]+)"/);
             if (!match) return null;
             const parts = match[1].split('~');
@@ -546,7 +546,8 @@
             try {
                 const url = 'https://smartbox.gtimg.cn/s3/?q=' + encodeURIComponent(name) + '&t=all';
                 const res = await fetch(url);
-                const text = await res.text();
+                const buf = await res.arrayBuffer();
+                const text = new TextDecoder('gbk').decode(buf);
                 const match = text.match(/="([^"]*)"/);
                 if (!match || !match[1]) {
                     quoteStatus.textContent = '无';
