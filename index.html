@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>股票持仓计算器</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -33,88 +29,47 @@
 
         @media (max-width: 560px) {
             body { padding: 0.5rem; }
-            .calculator-card {
-                margin-top: 0.5rem;
-                padding: 1rem 0.85rem;
-                border-radius: 20px;
-            }
+            .calculator-card { margin-top: 0.5rem; padding: 1rem 0.85rem; border-radius: 20px; }
         }
 
-        /* 头部 */
         .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: flex; align-items: center; justify-content: space-between;
             margin-bottom: 1.2rem;
         }
-
-        .header h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #0b1e32;
-            letter-spacing: -0.3px;
-        }
+        .header h1 { font-size: 1.5rem; font-weight: 600; color: #0b1e32; letter-spacing: -0.3px; }
 
         .refresh-btn {
-            background: #eef2f6;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.15s;
-            color: #2c3e50;
-            flex-shrink: 0;
-            -webkit-tap-highlight-color: transparent;
+            background: #eef2f6; border: none;
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.2s, transform 0.15s;
+            color: #2c3e50; flex-shrink: 0;
         }
-
         .refresh-btn:hover { background: #e2e8f0; }
         .refresh-btn:active { transform: scale(0.94); background: #d0dae6; }
-
         .refresh-icon {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+            width: 20px; height: 20px;
+            fill: none; stroke: currentColor; stroke-width: 2;
+            stroke-linecap: round; stroke-linejoin: round;
             transition: transform 0.3s ease;
         }
-
         .refresh-btn.spin .refresh-icon { transform: rotate(360deg); }
 
-        /* 三列输入行 */
         .input-row {
-            display: flex;
-            gap: 0.6rem;
-            margin-bottom: 0.9rem;
+            display: flex; gap: 0.6rem; margin-bottom: 0.9rem;
         }
-
         .input-row .field {
-            flex: 1 1 0;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
+            flex: 1 1 0; min-width: 0;
+            display: flex; flex-direction: column;
         }
-
         .field label {
-            font-size: 0.78rem;
-            font-weight: 500;
-            color: #4a5b6e;
-            margin-bottom: 0.25rem;
-            letter-spacing: 0.2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 0.78rem; font-weight: 500; color: #4a5b6e;
+            margin-bottom: 0.25rem; letter-spacing: 0.2px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
         .input-wrapper {
-            display: flex;
-            align-items: center;
+            display: flex; align-items: center;
             background: #f8fafd;
             border-radius: 10px;
             border: 1px solid #dce3ec;
@@ -122,42 +77,25 @@
             padding: 0 0.1rem 0 0.5rem;
             height: 34px;
         }
-
         .input-wrapper:focus-within {
             border-color: #2b6ed9;
             box-shadow: 0 0 0 2px rgba(43, 110, 217, 0.12);
             background: #ffffff;
         }
-
         .input-wrapper input {
-            width: 100%;
-            border: none;
-            background: transparent;
-            padding: 0 0.3rem;
-            font-size: 0.92rem;
-            font-weight: 500;
-            color: #0b1e32;
-            outline: none;
-            font-family: inherit;
-            min-width: 0;
-            height: 100%;
+            width: 100%; border: none; background: transparent;
+            padding: 0 0.3rem; font-size: 0.92rem; font-weight: 500;
+            color: #0b1e32; outline: none; font-family: inherit;
+            min-width: 0; height: 100%;
         }
-
         .input-wrapper input::placeholder {
-            color: #9aaebe;
-            font-weight: 400;
-            font-size: 0.85rem;
+            color: #9aaebe; font-weight: 400; font-size: 0.85rem;
         }
-
         .currency-symbol {
-            color: #6d7f94;
-            font-weight: 500;
-            font-size: 0.85rem;
-            user-select: none;
-            flex-shrink: 0;
+            color: #6d7f94; font-weight: 500; font-size: 0.85rem;
+            user-select: none; flex-shrink: 0;
         }
 
-        /* 买入分组框 */
         .buy-group {
             border: 1.5px solid #dce3ec;
             border-radius: 16px;
@@ -165,81 +103,43 @@
             margin-bottom: 1rem;
             background: #fbfdff;
         }
-
         .buy-group-title {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #2b6ed9;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
+            font-size: 0.82rem; font-weight: 700; color: #2b6ed9;
+            text-transform: uppercase; letter-spacing: 0.8px;
             margin-bottom: 0.6rem;
         }
-
-        .buy-actions {
-            display: flex;
-            gap: 0.6rem;
-            margin-top: 0.3rem;
-        }
-
+        .buy-actions { display: flex; gap: 0.6rem; margin-top: 0.3rem; }
         .buy-actions button {
-            flex: 1;
-            border: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            padding: 0.6rem 0.5rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            flex: 1; border: none; font-size: 0.95rem; font-weight: 600;
+            padding: 0.6rem 0.5rem; border-radius: 10px;
+            cursor: pointer; transition: background 0.2s, transform 0.1s;
             letter-spacing: 0.3px;
-            -webkit-tap-highlight-color: transparent;
         }
-
         .btn-confirm {
-            background: #0b1e32;
-            color: white;
+            background: #0b1e32; color: white;
             box-shadow: 0 6px 12px -6px rgba(11, 30, 50, 0.35);
         }
-
         .btn-confirm:hover { background: #1a3048; }
         .btn-confirm:active { transform: scale(0.98); background: #0a1928; }
-
-        .btn-cancel {
-            background: #eef2f6;
-            color: #3d5068;
-        }
-
+        .btn-cancel { background: #eef2f6; color: #3d5068; }
         .btn-cancel:hover { background: #e2e8f0; }
         .btn-cancel:active { transform: scale(0.98); background: #d0dae6; }
 
-        /* 持仓按钮 */
         .holdings-btn {
-            background: #0b1e32;
-            color: white;
-            border: none;
-            font-size: 1.05rem;
-            font-weight: 600;
-            padding: 0.75rem 1rem;
-            border-radius: 40px;
-            width: 100%;
-            margin-bottom: 1rem;
-            cursor: pointer;
+            background: #0b1e32; color: white; border: none;
+            font-size: 1.05rem; font-weight: 600;
+            padding: 0.75rem 1rem; border-radius: 40px; width: 100%;
+            margin-bottom: 1rem; cursor: pointer;
             transition: background 0.2s, transform 0.1s;
             letter-spacing: 0.3px;
             box-shadow: 0 8px 16px -8px rgba(11, 30, 50, 0.3);
-            -webkit-tap-highlight-color: transparent;
         }
-
         .holdings-btn:hover { background: #1a3048; }
         .holdings-btn:active { transform: scale(0.98); background: #0a1928; }
 
-        /* 持仓卡片列表 */
         .holdings-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            margin-bottom: 1rem;
+            display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem;
         }
-
         .holding-card {
             background: #ffffff;
             border: 1px solid #e3eaf2;
@@ -249,165 +149,95 @@
             position: relative;
             transition: box-shadow 0.2s;
         }
-
-        .holding-card:hover {
-            box-shadow: 0 4px 14px rgba(0, 20, 40, 0.08);
-        }
-
+        .holding-card:hover { box-shadow: 0 4px 14px rgba(0, 20, 40, 0.08); }
         .holding-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 0.5rem;
+            display: flex; justify-content: space-between;
+            align-items: baseline; gap: 0.5rem;
         }
-
         .holding-row:first-child {
             padding-bottom: 0.45rem;
             border-bottom: 1px dashed #e3eaf2;
             margin-bottom: 0.45rem;
         }
-
         .holding-cell {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            flex: 1; min-width: 0;
+            display: flex; flex-direction: column; align-items: flex-start;
         }
-
         .holding-cell.center { align-items: center; text-align: center; }
         .holding-cell.right { align-items: flex-end; text-align: right; }
-
         .cell-value {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: #0b1e32;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 0.88rem; font-weight: 600; color: #0b1e32;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
             max-width: 100%;
         }
-
         .cell-value.code { color: #2b6ed9; font-family: 'SF Mono', Consolas, monospace; }
         .cell-value.name { color: #0b1e32; }
         .cell-value.price { color: #0f8b4c; }
-
         .cell-label {
-            font-size: 0.62rem;
-            color: #8da0b5;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
+            font-size: 0.62rem; color: #8da0b5;
+            letter-spacing: 0.3px; text-transform: uppercase;
             margin-top: 0.1rem;
         }
-
         .holding-delete {
-            position: absolute;
-            top: 6px;
-            right: 8px;
-            background: none;
-            border: none;
-            color: #b0c0d0;
-            font-size: 1rem;
-            cursor: pointer;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: 6px; right: 8px;
+            background: none; border: none; color: #b0c0d0;
+            font-size: 1rem; cursor: pointer;
+            width: 24px; height: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             transition: background 0.15s, color 0.15s;
             line-height: 1;
-            -webkit-tap-highlight-color: transparent;
         }
-
-        .holding-delete:hover {
-            background: #fdeaea;
-            color: #c83e3e;
-        }
-
+        .holding-delete:hover { background: #fdeaea; color: #c83e3e; }
         .empty-holdings {
-            text-align: center;
-            color: #9aaebe;
-            font-size: 0.82rem;
-            padding: 1rem 0;
-            letter-spacing: 0.2px;
+            text-align: center; color: #9aaebe;
+            font-size: 0.82rem; padding: 1rem 0; letter-spacing: 0.2px;
         }
 
-        /* 结果面板 */
         .result-section {
             background: #f0f5fe;
             border-radius: 18px;
             padding: 1.1rem 1.1rem;
         }
-
         .result-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            color: #2b6ed9;
-            margin-bottom: 0.8rem;
-            opacity: 0.85;
+            font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.6px;
+            color: #2b6ed9; margin-bottom: 0.8rem; opacity: 0.85;
         }
-
         .result-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: grid; grid-template-columns: 1fr 1fr;
             gap: 0.7rem 1rem;
         }
-
         .result-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
+            display: flex; flex-direction: column; gap: 0.15rem;
         }
-
         .result-label {
-            font-size: 0.72rem;
-            font-weight: 500;
-            color: #5a6f88;
+            font-size: 0.72rem; font-weight: 500; color: #5a6f88;
         }
-
         .result-value {
-            font-size: 1.02rem;
-            font-weight: 700;
-            letter-spacing: -0.2px;
-            color: #0b1e32;
-            transition: color 0.2s;
-            word-break: break-all;
+            font-size: 1.02rem; font-weight: 700;
+            letter-spacing: -0.2px; color: #0b1e32;
+            transition: color 0.2s; word-break: break-all;
         }
-
         .positive { color: #0f8b4c !important; }
         .negative { color: #c83e3e !important; }
         .neutral  { color: #4a5b6e !important; }
 
         .hint-text {
-            font-size: 0.72rem;
-            color: #758ea8;
-            margin-top: 0.9rem;
-            text-align: center;
+            font-size: 0.72rem; color: #758ea8;
+            margin-top: 0.9rem; text-align: center;
             letter-spacing: 0.2px;
         }
 
         input[type=number]::-webkit-outer-spin-button,
         input[type=number]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+            -webkit-appearance: none; margin: 0;
         }
-
-        input[type=number] {
-            -moz-appearance: textfield;
-            appearance: textfield;
-        }
+        input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 
         .quote-status {
-            font-size: 0.68rem;
-            color: #2b6ed9;
-            font-weight: 500;
-            flex-shrink: 0;
-            padding-right: 0.35rem;
+            font-size: 0.68rem; color: #2b6ed9; font-weight: 500;
+            flex-shrink: 0; padding-right: 0.35rem;
         }
-
         .quote-status.error { color: #c83e3e; }
 
         @media (max-width: 420px) {
@@ -430,7 +260,6 @@
             </button>
         </div>
 
-        <!-- 第一行：股票代码、股票名称、现价 -->
         <div class="input-row">
             <div class="field">
                 <label for="stockCode">股票代码</label>
@@ -454,7 +283,6 @@
             </div>
         </div>
 
-        <!-- 买入分组框 -->
         <div class="buy-group">
             <div class="buy-group-title">买入</div>
             <div class="input-row" style="margin-bottom: 0.6rem;">
@@ -485,15 +313,12 @@
             </div>
         </div>
 
-        <!-- 持仓按钮 -->
         <button class="holdings-btn" id="holdingsBtn">持仓</button>
 
-        <!-- 持仓卡片列表 -->
         <div class="holdings-list" id="holdingsList">
-            <div class="empty-holdings" id="emptyHint">暂无持仓，点击“确定”添加买入记录</div>
+            <div class="empty-holdings" id="emptyHint">暂无持仓，点击"确定"添加买入记录</div>
         </div>
 
-        <!-- 汇总结果面板 -->
         <div class="result-section">
             <div class="result-title">持仓汇总</div>
             <div class="result-grid">
@@ -526,28 +351,46 @@
         </div>
     </div>
 
-    <script type="module">
-        import { StockSDK } from 'https://cdn.jsdelivr.net/npm/stock-sdk@2/dist/index.mjs';
+    <script>
+        // ========== 腾讯行情接口 ==========
+        // 格式: v_sh600519="1~贵州茅台~600519~1258.00~..."
+        async function fetchTencentQuote(symbol) {
+            const url = 'https://qt.gtimg.cn/q=' + symbol;
+            const res = await fetch(url);
+            const text = await res.text();
+            const match = text.match(/="([^"]+)"/);
+            if (!match) return null;
+            const parts = match[1].split('~');
+            return {
+                code: parts[2],
+                name: parts[1],
+                price: parseFloat(parts[3])
+            };
+        }
 
-        const sdk = new StockSDK();
+        function guessSymbol(code) {
+            code = code.trim();
+            if (/^(sh|sz|bj)/i.test(code)) return code.toLowerCase();
+            if (/^\d+$/.test(code)) {
+                if (code.startsWith('6')) return 'sh' + code;
+                if (code.startsWith('0') || code.startsWith('3')) return 'sz' + code;
+                if (code.startsWith('8') || code.startsWith('4')) return 'bj' + code;
+            }
+            return null;
+        }
 
-        // DOM - 行情输入
+        // ========== DOM ==========
         const stockCodeInput = document.getElementById('stockCode');
         const stockNameInput = document.getElementById('stockName');
         const currentPriceInput = document.getElementById('currentPrice');
         const quoteStatus = document.getElementById('quoteStatus');
-
-        // DOM - 买入输入
         const buyPriceInput = document.getElementById('buyPrice');
         const quantityInput = document.getElementById('quantity');
         const targetPriceInput = document.getElementById('targetPrice');
         const confirmBuyBtn = document.getElementById('confirmBuy');
         const cancelBuyBtn = document.getElementById('cancelBuy');
-
-        // DOM - 持仓与汇总
         const holdingsBtn = document.getElementById('holdingsBtn');
         const holdingsListEl = document.getElementById('holdingsList');
-        const emptyHint = document.getElementById('emptyHint');
         const totalCostEl = document.getElementById('totalCost');
         const marketValueEl = document.getElementById('marketValue');
         const profitAmountEl = document.getElementById('profitAmount');
@@ -555,13 +398,11 @@
         const targetValueEl = document.getElementById('targetValue');
         const targetPercentEl = document.getElementById('targetPercent');
         const stockHintEl = document.getElementById('stockHint');
-
         const refreshBtn = document.getElementById('refreshBtn');
 
-        // 持仓数据
         let holdings = [];
 
-        // ---------- 格式化工具 ----------
+        // ========== 工具 ==========
         function formatCurrency(v) {
             if (isNaN(v) || !isFinite(v)) return '¥ 0.00';
             const s = Number(v).toFixed(2);
@@ -594,10 +435,10 @@
             }[c]));
         }
 
-        // ---------- 渲染持仓卡片 ----------
+        // ========== 渲染 ==========
         function renderHoldings() {
             if (holdings.length === 0) {
-                holdingsListEl.innerHTML = '<div class="empty-holdings" id="emptyHint">暂无持仓，点击“确定”添加买入记录</div>';
+                holdingsListEl.innerHTML = '<div class="empty-holdings" id="emptyHint">暂无持仓，点击"确定"添加买入记录</div>';
                 return;
             }
             holdingsListEl.innerHTML = holdings.map((h, idx) => `
@@ -635,7 +476,6 @@
             `).join('');
         }
 
-        // ---------- 汇总计算（“持仓”按钮触发）----------
         function calculateSummary() {
             if (holdings.length === 0) {
                 totalCostEl.textContent = formatCurrency(0);
@@ -650,22 +490,16 @@
                 stockHintEl.textContent = '暂无持仓 · 数据仅供参考';
                 return;
             }
-
-            let totalCost = 0;
-            let marketValue = 0;
-            let targetValue = 0;
-
+            let totalCost = 0, marketValue = 0, targetValue = 0;
             holdings.forEach(h => {
                 totalCost += h.buyPrice * h.quantity;
                 const cp = h.currentPrice || 0;
                 marketValue += cp * h.quantity;
                 targetValue += (h.targetPrice || 0) * h.quantity;
             });
-
             const profitAmount = marketValue - totalCost;
             let profitPercent = 0;
             if (totalCost > 0) profitPercent = (profitAmount / totalCost) * 100;
-
             let targetPercent = 0;
             if (marketValue > 0) targetPercent = ((targetValue - marketValue) / marketValue) * 100;
 
@@ -678,83 +512,70 @@
             targetValueEl.textContent = formatCurrency(targetValue);
             targetPercentEl.textContent = formatPercent(targetPercent);
             setValueClass(targetPercentEl, targetPercent);
-
             stockHintEl.textContent = `共 ${holdings.length} 笔持仓 · 数据仅供参考`;
         }
 
-        // ---------- 行情查询（双向：代码→名称、名称→代码）----------
-        let quoteTimer = null;
-
+        // ========== 查询 ==========
         async function fetchByCode(code) {
-            if (!code || code.length < 4) return;
+            const symbol = guessSymbol(code);
+            if (!symbol) return;
             quoteStatus.textContent = '...';
             quoteStatus.classList.remove('error');
             try {
-                let symbol = code.trim().toLowerCase();
-                if (/^\d+$/.test(symbol)) {
-                    if (symbol.startsWith('6')) symbol = 'sh' + symbol;
-                    else if (symbol.startsWith('0') || symbol.startsWith('3')) symbol = 'sz' + symbol;
-                    else if (symbol.startsWith('8') || symbol.startsWith('4')) symbol = 'bj' + symbol;
-                }
-                const quotes = await sdk.getSimpleQuotes([symbol]);
-                if (quotes && quotes.length > 0) {
-                    const q = quotes[0];
-                    stockNameInput.value = q.name || '';
-                    if (q.price != null && !isNaN(parseFloat(q.price))) {
-                        currentPriceInput.value = parseFloat(q.price).toFixed(2);
-                    }
+                const q = await fetchTencentQuote(symbol);
+                if (q) {
+                    stockNameInput.value = q.name;
+                    currentPriceInput.value = q.price.toFixed(2);
                     quoteStatus.textContent = '✓';
                 } else {
                     quoteStatus.textContent = '无';
                     quoteStatus.classList.add('error');
                 }
             } catch (err) {
-                console.warn('代码查询失败:', err);
+                console.warn('查询失败:', err);
                 quoteStatus.textContent = '失败';
                 quoteStatus.classList.add('error');
             }
         }
 
-async function fetchByName(name) {
-    if (!name || name.trim().length < 2) return;
-    quoteStatus.textContent = '...';
-    quoteStatus.classList.remove('error');
-    try {
-        // 用 search 方法，支持名称、代码、拼音模糊搜索
-        const results = await sdk.search(name.trim());
-        if (results && results.length > 0) {
-            const first = results[0];
-            const pureCode = (first.code || '').replace(/^(sh|sz|bj)/i, '');
-            stockCodeInput.value = pureCode;
-            // 获取该代码的实时行情
-            const quotes = await sdk.getSimpleQuotes([first.code]);
-            if (quotes && quotes.length > 0) {
-                const q = quotes[0];
-                stockNameInput.value = q.name || first.name || name;
-                if (q.price != null && !isNaN(parseFloat(q.price))) {
-                    currentPriceInput.value = parseFloat(q.price).toFixed(2);
+        async function fetchByName(name) {
+            name = name.trim();
+            if (name.length < 2) return;
+            quoteStatus.textContent = '...';
+            quoteStatus.classList.remove('error');
+            try {
+                const url = 'https://smartbox.gtimg.cn/s3/?q=' + encodeURIComponent(name) + '&t=all';
+                const res = await fetch(url);
+                const text = await res.text();
+                const match = text.match(/="([^"]*)"/);
+                if (!match || !match[1]) {
+                    quoteStatus.textContent = '无';
+                    quoteStatus.classList.add('error');
+                    return;
                 }
+                const first = match[1].split('^')[0];
+                const parts = first.split('~');
+                const market = parts[0];
+                const pureCode = parts[1];
+                const fullName = parts[2];
+                stockCodeInput.value = pureCode;
+                stockNameInput.value = fullName;
+                const q = await fetchTencentQuote(market + pureCode);
+                if (q) currentPriceInput.value = q.price.toFixed(2);
                 quoteStatus.textContent = '✓';
-            } else {
-                stockNameInput.value = first.name || name;
-                quoteStatus.textContent = '✓';
+            } catch (err) {
+                console.warn('查询失败:', err);
+                quoteStatus.textContent = '失败';
+                quoteStatus.classList.add('error');
             }
-        } else {
-            quoteStatus.textContent = '无';
-            quoteStatus.classList.add('error');
         }
-    } catch (err) {
-        console.warn('名称查询失败:', err);
-        quoteStatus.textContent = '失败';
-        quoteStatus.classList.add('error');
-    }
-}
-        // 代码输入：防抖查询
+
+        let quoteTimer = null;
         stockCodeInput.addEventListener('input', () => {
             clearTimeout(quoteTimer);
             const code = stockCodeInput.value.trim();
             if (code.length >= 4) {
-                quoteTimer = setTimeout(() => fetchByCode(code), 500);
+                quoteTimer = setTimeout(() => fetchByCode(code), 400);
             } else {
                 quoteStatus.textContent = '';
                 stockNameInput.value = '';
@@ -765,22 +586,11 @@ async function fetchByName(name) {
             const code = stockCodeInput.value.trim();
             if (code.length >= 4) fetchByCode(code);
         });
-        stockCodeInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                clearTimeout(quoteTimer);
-                fetchByCode(stockCodeInput.value.trim());
-            }
-        });
-
-        // 名称输入：防抖查询
         stockNameInput.addEventListener('input', () => {
             clearTimeout(quoteTimer);
             const name = stockNameInput.value.trim();
             if (name.length >= 2) {
-                quoteTimer = setTimeout(() => fetchByName(name), 600);
-            } else {
-                quoteStatus.textContent = '';
+                quoteTimer = setTimeout(() => fetchByName(name), 500);
             }
         });
         stockNameInput.addEventListener('blur', () => {
@@ -788,15 +598,8 @@ async function fetchByName(name) {
             const name = stockNameInput.value.trim();
             if (name.length >= 2) fetchByName(name);
         });
-        stockNameInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                clearTimeout(quoteTimer);
-                fetchByName(stockNameInput.value.trim());
-            }
-        });
 
-        // ---------- 确定买入：生成持仓卡片 ----------
+        // ========== 买入 ==========
         confirmBuyBtn.addEventListener('click', () => {
             const code = stockCodeInput.value.trim();
             const name = stockNameInput.value.trim();
@@ -805,49 +608,32 @@ async function fetchByName(name) {
             const quantity = parseFloat(quantityInput.value);
             const targetPrice = parseFloat(targetPriceInput.value);
 
-            // 基础校验
-            if (!code && !name) {
-                alert('请先输入股票代码或名称');
-                return;
-            }
-            if (isNaN(buyPrice) || buyPrice <= 0) {
-                alert('请输入有效的买入价格');
-                return;
-            }
-            if (isNaN(quantity) || quantity <= 0) {
-                alert('请输入有效的买入数量');
-                return;
-            }
+            if (!code && !name) { alert('请先输入股票代码或名称'); return; }
+            if (isNaN(buyPrice) || buyPrice <= 0) { alert('请输入有效的买入价格'); return; }
+            if (isNaN(quantity) || quantity <= 0) { alert('请输入有效的买入数量'); return; }
 
             holdings.push({
                 code: code || '--',
                 name: name || '--',
                 currentPrice: isNaN(currentPrice) ? 0 : currentPrice,
-                buyPrice: buyPrice,
-                quantity: quantity,
+                buyPrice, quantity,
                 targetPrice: isNaN(targetPrice) ? 0 : targetPrice
             });
-
             renderHoldings();
-
-            // 清空买入区，保留股票信息便于连续买入
             buyPriceInput.value = '';
             quantityInput.value = '';
             targetPriceInput.value = '';
             buyPriceInput.focus();
         });
 
-        // ---------- 取消：清空买入区 ----------
         cancelBuyBtn.addEventListener('click', () => {
             buyPriceInput.value = '';
             quantityInput.value = '';
             targetPriceInput.value = '';
         });
 
-        // ---------- 持仓按钮：计算汇总 ----------
         holdingsBtn.addEventListener('click', calculateSummary);
 
-        // ---------- 删除持仓卡片 ----------
         holdingsListEl.addEventListener('click', (e) => {
             const del = e.target.closest('.holding-delete');
             if (del) {
@@ -855,13 +641,11 @@ async function fetchByName(name) {
                 if (!isNaN(idx)) {
                     holdings.splice(idx, 1);
                     renderHoldings();
-                    // 若列表为空，重置汇总
                     if (holdings.length === 0) calculateSummary();
                 }
             }
         });
 
-        // ---------- 刷新重置 ----------
         refreshBtn.addEventListener('click', () => {
             refreshBtn.classList.add('spin');
             stockCodeInput.value = '';
@@ -878,7 +662,6 @@ async function fetchByName(name) {
             setTimeout(() => refreshBtn.classList.remove('spin'), 300);
         });
 
-        // 初始化
         renderHoldings();
         calculateSummary();
     </script>
